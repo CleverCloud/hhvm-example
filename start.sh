@@ -6,4 +6,6 @@ service nginx start
 
 composer install
 
+echo "App running on port 8080"
+
 tail -f /var/log/hhvm/error.log
