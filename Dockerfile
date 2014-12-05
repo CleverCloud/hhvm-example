@@ -1,7 +1,7 @@
 FROM jolicode/hhvm
 
-RUN apt-get update \
- && apt-get install -y nginx
+RUN sudo apt-get update \
+ && sudo apt-get install -y nginx
 
 ADD . /root
 RUN chmod +x /root/start.sh
