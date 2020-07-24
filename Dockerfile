@@ -1,20 +1,21 @@
-FROM jolicode/hhvm
+FROM hhvm/hhvm-proxygen:latest
 
-RUN sudo rm -fr /var/lib/apt/lists/* \
- && sudo apt-get update \
- && sudo apt-get install -y nginx
+RUN apt-get update -y && apt-get install -y curl
+# Install composer
+RUN mkdir /opt/composer
+RUN curl -sS https://getcomposer.org/installer | hhvm --php -- --install-dir=/opt/composer
 
-ADD . /root
-RUN sudo chmod +x /root/start.sh
+RUN rm -rf /var/www
+ADD . /var/www
+RUN cd /var/www && hhvm /opt/composer/composer.phar install
 
-ADD hhvm.hdf /etc/hhvm/server.hdf
-ADD nginx.conf /etc/nginx/sites-available/hack.conf
-RUN sudo ln -s /etc/nginx/sites-available/hack.conf /etc/nginx/sites-enabled/hack.conf
-RUN sudo nginx -t
+#ADD . /root
+#RUN sudo chmod +x /root/start.sh
 
-RUN sudo chown -R www-data:www-data /root
-WORKDIR /root
+#ADD hhvm.hdf /etc/hhvm/server.hdf
+#ADD nginx.conf /etc/nginx/sites-available/hack.conf
+#RUN sudo ln -s /etc/nginx/sites-available/hack.conf /etc/nginx/sites-enabled/hack.conf
+
+WORKDIR /var/www
 
 EXPOSE 8080
-
-CMD ["sudo","/root/start.sh"]
