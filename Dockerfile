@@ -11,6 +11,8 @@ RUN cd /var/www && /opt/composer/composer.phar install --no-dev
 
 WORKDIR /var/www
 
+ADD site.ini /etc/hhvm/server.ini
+
 #ADD . /root
 #RUN sudo chmod +x /root/start.sh
 
