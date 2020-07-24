@@ -7,7 +7,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/opt/compo
 
 RUN rm -rf /var/www
 ADD . /var/www
-RUN cd /var/www && hhvm /opt/composer/composer.phar install
+RUN cd /var/www && composer.phar install
 
 WORKDIR /var/www
 
