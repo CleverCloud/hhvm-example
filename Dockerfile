@@ -1,6 +1,7 @@
 FROM jolicode/hhvm
 
-RUN sudo apt-get update \
+RUN sudo rm -fr /var/lib/apt/lists/* \
+ && sudo apt-get update \
  && sudo apt-get install -y nginx
 
 ADD . /root
