@@ -3,7 +3,7 @@ FROM hhvm/hhvm-proxygen:latest
 RUN apt-get update -y && apt-get install -y curl
 # Install composer
 RUN mkdir /opt/composer
-RUN curl -sS https://getcomposer.org/installer | hhvm --php -- --install-dir=/opt/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/opt/composer
 
 RUN rm -rf /var/www
 ADD . /var/www
