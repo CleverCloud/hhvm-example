@@ -1,3 +1,5 @@
+> **DEPRECATED**: This example is no longer maintained and is kept only for reference purposes.
+> 
 # HHVM demo
 
 This is the hack example site, taken from <https://github.com/hhvm/hack-example-site>
